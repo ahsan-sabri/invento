@@ -73,7 +73,7 @@
 
 <script type="text/javascript">
 export default {
-    created() {
+    mounted() {
         if (!User.loggedIn()) {
             this.$router.push({ name: "/" });
         }
@@ -87,7 +87,7 @@ export default {
     computed: {
         filtersearch() {
             return this.employees.filter((employee) => {
-                return employee.name.match(this.searchTerm);
+                return employee.phone.match(this.searchTerm);
             });
         },
     },
@@ -131,9 +131,9 @@ export default {
             });
         },
     },
-    // created() {
-    //     this.allEmployee();
-    // },
+    created() {
+        this.allEmployee();
+    },
 };
 </script>
 

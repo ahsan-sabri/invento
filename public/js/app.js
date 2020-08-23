@@ -2459,10 +2459,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var _created$data$created;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2611,71 +2607,116 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = (_created$data$created = {
-  created: function created() {
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
   },
   data: function data() {
     return {
       form: {
-        name: '',
-        email: '',
-        phone: '',
-        sallery: '',
-        address: '',
-        photo: '',
-        newphoto: '',
-        nid: '',
-        joining_date: ''
+        name: "",
+        email: "",
+        phone: "",
+        sallery: "",
+        address: "",
+        photo: "",
+        newphoto: "",
+        nid: "",
+        joining_date: ""
       },
       errors: {}
     };
-  }
-}, _defineProperty(_created$data$created, "created", function created() {
-  var _this = this;
-
-  var id = this.$route.params.id;
-  axios.get('/api/employee/' + id).then(function (_ref) {
-    var data = _ref.data;
-    return _this.form = data;
-  })["catch"](console.log('error'));
-}), _defineProperty(_created$data$created, "methods", {
-  onFileSelected: function onFileSelected(event) {
-    var _this2 = this;
-
-    var file = event.target.files[0];
-
-    if (file.size > 1048770) {
-      Notification.image_validation();
-    } else {
-      var reader = new FileReader();
-
-      reader.onload = function (event) {
-        _this2.form.newphoto = event.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    }
   },
-  employeeUpdate: function employeeUpdate() {
-    var _this3 = this;
+  created: function created() {
+    var _this = this;
 
     var id = this.$route.params.id;
-    axios.patch('/api/employee/' + id, this.form).then(function () {
-      _this3.$router.push({
-        name: 'employee'
-      });
+    axios.get("/api/employee/" + id).then(function (_ref) {
+      var data = _ref.data;
+      return _this.form = data;
+    })["catch"](console.log("error"));
+  },
+  methods: {
+    onFileSelected: function onFileSelected(event) {
+      var _this2 = this;
 
-      Notification.success();
-    })["catch"](function (error) {
-      return _this3.errors = error.response.data.errors;
-    });
+      var file = event.target.files[0];
+
+      if (file.size > 1048770) {
+        Notification.image_validation();
+      } else {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+          _this2.form.newphoto = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    },
+    employeeUpdate: function employeeUpdate() {
+      var _this3 = this;
+
+      var id = this.$route.params.id;
+      axios.patch("/api/employee/" + id, this.form).then(function () {
+        _this3.$router.push({
+          name: "employee"
+        });
+
+        Notification.success();
+      })["catch"](function (error) {
+        return _this3.errors = error.response.data.errors;
+      });
+    }
   }
-}), _created$data$created);
+});
 
 /***/ }),
 
@@ -2762,7 +2803,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {
+  mounted: function mounted() {
     if (!User.loggedIn()) {
       this.$router.push({
         name: "/"
@@ -2780,7 +2821,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return this.employees.filter(function (employee) {
-        return employee.name.match(_this.searchTerm);
+        return employee.phone.match(_this.searchTerm);
       });
     }
   },
@@ -2819,10 +2860,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
-  } // created() {
-  //     this.allEmployee();
-  // },
-
+  },
+  created: function created() {
+    this.allEmployee();
+  }
 });
 
 /***/ }),
@@ -46818,7 +46859,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/employee" } },
-          [_vm._v("All Employee ")]
+          [_vm._v("All Employee")]
         )
       ],
       1
@@ -46881,7 +46922,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.name
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(_vm._s(_vm.errors.name[0]))
                                 ])
                               : _vm._e()
                           ]),
@@ -46919,9 +46960,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
-                                  )
+                                  _vm._v(_vm._s(_vm.errors.email[0]))
                                 ])
                               : _vm._e()
                           ])
@@ -46963,9 +47002,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.address
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    " " + _vm._s(_vm.errors.address[0]) + " "
-                                  )
+                                  _vm._v(_vm._s(_vm.errors.address[0]))
                                 ])
                               : _vm._e()
                           ]),
@@ -47003,9 +47040,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.sallery
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    " " + _vm._s(_vm.errors.sallery[0]) + " "
-                                  )
+                                  _vm._v(_vm._s(_vm.errors.sallery[0]))
                                 ])
                               : _vm._e()
                           ])
@@ -47047,11 +47082,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.joining_date
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    " " +
-                                      _vm._s(_vm.errors.joining_date[0]) +
-                                      " "
-                                  )
+                                  _vm._v(_vm._s(_vm.errors.joining_date[0]))
                                 ])
                               : _vm._e()
                           ]),
@@ -47085,7 +47116,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.nid
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.nid[0]) + " ")
+                                  _vm._v(_vm._s(_vm.errors.nid[0]))
                                 ])
                               : _vm._e()
                           ])
@@ -47127,9 +47158,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.phone
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    " " + _vm._s(_vm.errors.phone[0]) + " "
-                                  )
+                                  _vm._v(_vm._s(_vm.errors.phone[0]))
                                 ])
                               : _vm._e()
                           ]),
@@ -47149,9 +47178,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.photo
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    " " + _vm._s(_vm.errors.photo[0]) + " "
-                                  )
+                                  _vm._v(_vm._s(_vm.errors.photo[0]))
                                 ])
                               : _vm._e(),
                             _vm._v(" "),
@@ -47199,7 +47226,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v(" Employee Update")
+        _vm._v("Employee Update")
       ])
     ])
   },
